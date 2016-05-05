@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import th.in.nagi.swp.model.User;
 import th.in.nagi.swp.service.UserService;
 
 public class LoginController implements Controller {
@@ -16,7 +17,8 @@ public class LoginController implements Controller {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		if (UserService.getInstance().find(username, password) != null) {
+		User user = UserService.getInstance().find(username, password);
+		if (user != null && user.checkPassword(password)) {
 	        HttpSession session = request.getSession();
 	        session.setAttribute("user", username);
 			request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request, response);

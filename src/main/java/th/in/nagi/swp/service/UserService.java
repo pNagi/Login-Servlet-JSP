@@ -18,11 +18,7 @@ public class UserService {
 	}
 
 	public User find(String username, String password) {
-		User user = users.get(username);
-		if (user != null) {
-			return (user.checkPassword(password)) ? user : null;
-		}
-		return null;
+		return users.get(username);
 	}
 
 	/**
