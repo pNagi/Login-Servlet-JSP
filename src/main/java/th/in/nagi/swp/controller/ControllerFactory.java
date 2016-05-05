@@ -12,11 +12,11 @@ public class ControllerFactory {
 	private static ControllerFactory instance;
 
 	private ControllerFactory() {
-		actions = new HashMap<>();
-		actions.put("GET/", new LoginController());
+		actions = new HashMap<String, Controller>();
+		actions.put("GET/", new IndexController());
 		actions.put("GET/register", new RegisterController());
-		actions.put("POST/", new AuthenticateController());
-		actions.put("POST/register", new RegisterController());
+		actions.put("POST/", new LoginController());
+		actions.put("POST/create", new CreateUserController());
 		actions.put("POST/logout", new LogoutController());
 	}
 

@@ -7,6 +7,18 @@
 <title>Register</title>
 </head>
 <body>
-register
+	<div>
+		<h2>Register</h2>
+		<p>${error}</p>
+		<form method="post" action="/app/create">
+			<label for="username">Username</label>
+			<input type="text" name="username" size="20" />
+				<label for="username">Password</label>
+			<input type="password" name="password" size="20"/>
+			<input type="submit"
+				value="submit"/>
+		</form>
+		<a href="/app/">Back to login page</a>
+	</div>
 </body>
 </html>

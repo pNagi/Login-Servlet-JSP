@@ -7,22 +7,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import th.in.nagi.swp.model.User;
 import th.in.nagi.swp.service.UserService;
 
-public class LoginController implements Controller {
+public class CreateUserController implements Controller {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		if (UserService.getInstance().find(username, password) != null) {
+		User user = UserService.getInstance().addUser(new User(username, password));
+		if (user == null) {
 	        HttpSession session = request.getSession();
 	        session.setAttribute("user", username);
-			request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request, response);
+			response.sendRedirect("/app/");
 		} else {
-			request.setAttribute("error", "Invalid Username/Password");
-			request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+			request.setAttribute("error", "Username has already been taken.");
+			request.getRequestDispatcher("/WEB-INF/views/register.jsp").forward(request, response);
 		}
 	}
 }
