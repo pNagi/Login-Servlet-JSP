@@ -29,7 +29,7 @@ public class ControllerFactory {
 	}
 
 	public Controller getAction(HttpServletRequest request) {
-		System.out.println("get_action: " + request.getMethod() + request.getPathInfo());
+		System.out.println("action: " + request.getMethod() + request.getPathInfo());
 		return actions.get(request.getMethod() + request.getPathInfo());
 	}
 }

@@ -9,10 +9,6 @@ import javax.servlet.http.HttpSession;
 
 public class IndexController implements Controller {
 
-	public IndexController() {
-		System.out.println("LoginController");
-	}
-
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
